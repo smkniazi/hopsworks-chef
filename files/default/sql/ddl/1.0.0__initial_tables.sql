@@ -1752,3 +1752,25 @@ CREATE TABLE `variables` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-06-14  8:07:38
+
+
+
+--
+-- Table structure for cloud AMIs
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `amis` (
+  `ami` varchar(255) COLLATE latin1_general_cs NOT NULL,
+  `provider` ENUM('gce','aws','azure') NOT NULL,  
+  `flavor` varchar(255) COLLATE latin1_general_cs NOT NULL,
+  `nm` tinyint(1) DEFAULT 0,
+  `dn` tinyint(1) DEFAULT 0,  
+  `memory_mbs` int(11) NOT NULL,
+  `cpus` int(11) NOT NULL,
+  `gpus` int(11) DEFAULT 0,    
+  PRIMARY KEY (`ami`),
+  KEY `flavor_idx` (`flavor`)
+) ENGINE=ndbcluster DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+/*!40101 SET character_set_client = @saved_cs_client */;
